@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#2b2622"/>
+  <rect x="0" y="420" width="1200" height="255" fill="#3d352e"/>
+  <rect x="120" y="300" width="960" height="130" rx="8" fill="#5a4a3b"/>
+  <rect x="140" y="430" width="30" height="220" fill="#4a3d31"/>
+  <rect x="1030" y="430" width="30" height="220" fill="#4a3d31"/>
+  <g>
+    <rect x="260" y="200" width="60" height="110" rx="18" fill="#3a3a3a"/>
+    <rect x="380" y="200" width="60" height="110" rx="18" fill="#d8c3a1"/>
+    <rect x="500" y="200" width="60" height="110" rx="18" fill="#2f5d3a"/>
+    <rect x="620" y="200" width="60" height="110" rx="18" fill="#3a3a3a"/>
+    <rect x="740" y="200" width="60" height="110" rx="18" fill="#2f5d3a"/>
+    <rect x="860" y="200" width="60" height="110" rx="18" fill="#d8c3a1"/>
+  </g>
+  <circle cx="600" cy="80" r="46" fill="#f3e2b8" opacity="0.9"/>
+  <path d="M 600 126 L 600 200" stroke="#f3e2b8" stroke-width="3" opacity="0.4"/>
+  <text x="600" y="640" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#cbbfa4">[Foto de práctica: el taller donde se revisa y graba cada botella]</text>
+</svg>

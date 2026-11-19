@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Origen Studio — Frío 24 horas. Calor 12. Revisada a mano.</title>
+  <meta name="description" content="Botella térmica ORIGEN 750 de acero inoxidable de doble pared: frío 24 h, calor 12 h, sin BPA. En grafito, arena y verde bosque por 39 EUR. Envío gratis desde 60 EUR.">
+  <meta name="theme-color" content="#f1ede6">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+
+  <!-- Librerías fijadas a versiones exactas (no cambiar sin comprobar que existen en el CDN) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="motor-3d/motor3d.css">
+  <style>
+    /* Branding de Origen Studio (branding.json): verde bosque y grafito del logo, crema de sus fotos */
+    :root {
+      --m3d-fondo: #f1ede6;
+      --m3d-texto: #2a2a2a;
+      --m3d-acento: #2f5d3a;
+      --m3d-sobre-acento: #f1ede6;
+      --m3d-fuente: Georgia, "Times New Roman", serif;
+    }
+    .m3d-nota { font-size: clamp(0.9rem, 1.6vw, 1rem); opacity: 0.75; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Cortina de intro con el logo del negocio -->
+  <div class="m3d-intro" aria-hidden="true">
+    <img src="assets/logo.svg" alt="">
+  </div>
+
+  <!-- Cabecera fija -->
+  <header class="m3d-cabecera">
+    <a class="m3d-cabecera__marca" href="#inicio">
+      <img src="assets/logo.svg" alt="Origen Studio">
+      <span>Origen Studio</span>
+    </a>
+    <a class="m3d-boton" href="mailto:hola@origen-studio.example?subject=Quiero%20mi%20botella%20ORIGEN%20750">Pedir la mía</a>
+  </header>
+
+  <!-- El objeto 3D se dibuja aquí, detrás de todo el contenido -->
+  <canvas id="escena3d"></canvas>
+
+  <main data-motor3d
+        data-modelo="assets/producto.glb"
+        data-acento="#2f5d3a"
+        data-fondo="#f1ede6"
+        data-poster="assets/poster.png"
+        data-objetos='[
+          {"id":"logo","tipo":"logo","src":"assets/logo.svg"},
+          {"id":"arena","tipo":"copia","de":"estrella","color":"#d8c3a1"},
+          {"id":"verde","tipo":"copia","de":"estrella","color":"#2f5d3a"},
+          {"id":"ambiente","tipo":"particulas","cantidad":110,"tamano":0.07},
+          {"id":"anillos","tipo":"formas","forma":"anillo","cantidad":5,"radio":1.0}
+        ]'>
+
+    <!-- 1 · APERTURA: la botella en grafito gira sola sobre el titular -->
+    <section id="inicio" class="m3d-seccion m3d-seccion--centro m3d-seccion--hero"
+             data-3d='{"rot":[0,0,0],"pos":[0,0.95,0],"escala":0.5,"cam":[0,0,6.6],"mira":[0,0,0],"explota":0,"luz":1,"color":"#3a3a3a",
+                       "objetos":{"ambiente":{"opacidad":0.55}}}'>
+      <div class="m3d-hero-entra">
+        <span class="m3d-etiqueta">Origen Studio · ORIGEN 750</span>
+        <h1 class="m3d-titulo m3d-titulo--xl m3d-split">Frío 24 horas. Calor 12. Revisada a mano.</h1>
+        <p class="m3d-texto m3d-texto--grande">La botella térmica ORIGEN 750, de acero inoxidable de doble pared, revisada una a una en nuestro taller antes de salir.</p>
+        <div class="m3d-botones">
+          <a class="m3d-boton m3d-pulso" href="#productos">Elige tu color · 39 EUR</a>
+          <a class="m3d-boton m3d-boton--fantasma" href="#historia">El taller</a>
+        </div>
+      </div>
+      <div class="m3d-pista">Desliza</div>
+    </section>
+
+    <!-- 2 · EL TALLER: texto a la izquierda, la botella a la derecha con el logo en volumen -->
+    <section id="historia" class="m3d-seccion m3d-seccion--izq"
+             data-3d='{"rot":[0,35,0],"pos":[1.3,0,0],"escala":1,"cam":[0,0.2,6],
+                       "objetos":{"logo":{"pos":[2.35,1.15,-0.8],"rot":[0,-22,0],"escala":0.42,"opacidad":1},"ambiente":{"opacidad":0.2}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Nuestro taller</span>
+      <h2 class="m3d-titulo m3d-reveal">Ninguna sale sin pasar por nuestras manos</h2>
+      <p class="m3d-texto m3d-reveal">En Origen Studio hacemos una sola cosa: la botella térmica ORIGEN 750. En nuestro taller propio revisamos cada botella una a una antes de enviarla, y allí mismo grabamos tu nombre o una frase corta si quieres hacerla tuya.</p>
+      <figure class="m3d-foto m3d-foto--kenburns m3d-reveal">
+        <img src="assets/taller.svg" alt="El taller de Origen Studio: botellas en grafito, arena y verde bosque sobre la mesa de revisión" loading="lazy">
+      </figure>
+    </section>
+
+    <!-- 3 · LOS TRES ACABADOS: la botella se aparta y aparecen sus copias en arena y verde bosque -->
+    <section id="productos" class="m3d-seccion m3d-seccion--der"
+             data-3d='{"rot":[0,180,0],"pos":[-2.05,0,0],"escala":0.85,"cam":[0,0,6],"color":"#3a3a3a",
+                       "objetos":{"logo":{"opacidad":0},
+                                  "arena":{"pos":[-1.3,0,0.1],"rot":[0,160,0],"escala":0.85,"opacidad":1},
+                                  "verde":{"pos":[-0.55,0,0.2],"rot":[0,140,0],"escala":0.85,"opacidad":1}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Tres acabados</span>
+      <h2 class="m3d-titulo m3d-reveal">Una botella, tres colores, un precio</h2>
+      <div class="m3d-rejilla">
+        <article class="m3d-tarjeta m3d-reveal">
+          <h3>ORIGEN 750 · Grafito</h3>
+          <p>Acero inoxidable de doble pared, 750 ml.</p>
+          <span class="m3d-precio">39 EUR</span>
+        </article>
+        <article class="m3d-tarjeta m3d-reveal">
+          <h3>ORIGEN 750 · Arena</h3>
+          <p>Acero inoxidable de doble pared, 750 ml.</p>
+          <span class="m3d-precio">39 EUR</span>
+        </article>
+        <article class="m3d-tarjeta m3d-reveal">
+          <h3>ORIGEN 750 · Verde bosque</h3>
+          <p>Acero inoxidable de doble pared, 750 ml.</p>
+          <span class="m3d-precio">39 EUR</span>
+        </article>
+      </div>
+      <p class="m3d-nota m3d-reveal">Precios con IVA incluido. Grabado personalizado (nombre o frase corta): consultar.</p>
+    </section>
+
+    <!-- 4 · EL DETALLE: la cámara se acerca a la botella y unos anillos la rodean por detrás -->
+    <section id="detalle" class="m3d-seccion m3d-seccion--izq"
+             data-3d='{"rot":[12,300,0],"pos":[1.05,0,0],"escala":1.05,"cam":[0,0.3,5],"mira":[0.3,0,0],"explota":0,"luz":1.25,
+                       "objetos":{"arena":{"opacidad":0},"verde":{"opacidad":0},
+                                  "anillos":{"pos":[2.1,0,-1.6],"escala":0.8,"opacidad":0.8}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Por dentro</span>
+      <h2 class="m3d-titulo m3d-reveal">Hecha para aguantar todo el día</h2>
+      <ol class="m3d-puntos">
+        <li class="m3d-reveal"><strong>24 h frío · 12 h calor</strong><span>Acero inoxidable de doble pared que mantiene la temperatura de lo que lleves.</span></li>
+        <li class="m3d-reveal"><strong>Tapón de rosca hermético</strong><span>Cierra bien y es apta también para bebidas con gas.</span></li>
+        <li class="m3d-reveal"><strong>750 ml, libre de BPA</strong><span>Capacidad para el día entero, sin BPA.</span></li>
+      </ol>
+    </section>
+
+    <!-- 5 · CÓMO PEDIR: la botella cambia a arena; precio y envío gratis bien visibles -->
+    <section id="pedir" class="m3d-seccion m3d-seccion--der"
+             data-3d='{"rot":[0,420,0],"pos":[-1.25,0.1,0],"escala":1.05,"cam":[0,0,6],"mira":[0,0,0],"explota":0,"luz":1,"color":"#d8c3a1",
+                       "objetos":{"anillos":{"opacidad":0}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Cómo pedirla</span>
+      <h2 class="m3d-titulo m3d-reveal">Dos botellas y el envío es gratis</h2>
+      <div class="m3d-cifras m3d-reveal">
+        <div class="m3d-cifra"><span class="m3d-contador" data-valor="39" data-sufijo=" EUR">0</span><small>cada botella, IVA incluido</small></div>
+        <div class="m3d-cifra"><span class="m3d-contador" data-valor="60" data-sufijo=" EUR">0</span><small>a partir de aquí, envío gratis (si no, 4,90 EUR)</small></div>
+      </div>
+      <p class="m3d-texto m3d-reveal">Escríbenos un correo con el color que quieres (y el grabado, si lo quieres) y te la preparamos.</p>
+      <div class="m3d-botones m3d-reveal">
+        <a class="m3d-boton" href="mailto:hola@origen-studio.example?subject=Quiero%20mi%20botella%20ORIGEN%20750">Pedir por correo</a>
+      </div>
+    </section>
+
+    <!-- 6 · CONTACTO: solo el correo y las redes que aparecen en su web (teléfono, horario y dirección: no disponibles) -->
+    <section id="contacto" class="m3d-seccion m3d-seccion--izq"
+             data-3d='{"rot":[0,540,0],"pos":[1.3,-0.15,0],"escala":0.9,"cam":[0,0.5,6.5],"mira":[0,0,0],"color":"#2f5d3a",
+                       "objetos":{"logo":{"pos":[2.35,1.2,-0.6],"rot":[0,-18,0],"escala":0.4,"opacidad":1}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Contacto</span>
+      <h2 class="m3d-titulo m3d-reveal">Escríbenos y te respondemos lo antes posible</h2>
+      <div class="m3d-contacto m3d-reveal">
+        <dl>
+          <div><dt>Correo</dt><dd><a href="mailto:hola@origen-studio.example">hola@origen-studio.example</a></dd></div>
+          <div><dt>Instagram</dt><dd>@origenstudio.example</dd></div>
+          <div><dt>Facebook</dt><dd>Origen Studio</dd></div>
+        </dl>
+      </div>
+      <div class="m3d-botones m3d-reveal">
+        <a class="m3d-boton" href="mailto:hola@origen-studio.example">Escribirnos</a>
+      </div>
+    </section>
+
+    <!-- 7 · CIERRE: la botella y el logo, en pareja, sobre el titular -->
+    <section id="cierre" class="m3d-seccion m3d-seccion--centro m3d-seccion--abajo"
+             data-3d='{"rot":[0,720,0],"pos":[-0.75,1.0,0],"escala":0.48,"cam":[0,0,6.6],"mira":[0,0,0],"explota":0,"luz":1.2,"color":"#3a3a3a",
+                       "objetos":{"logo":{"pos":[0.8,1.05,0],"rot":[0,0,0],"escala":0.5,"opacidad":1},"ambiente":{"opacidad":0.5}}}'>
+      <span class="m3d-etiqueta m3d-reveal">Origen Studio</span>
+      <h2 class="m3d-titulo m3d-titulo--xl m3d-reveal">Tu botella, revisada a mano.</h2>
+      <p class="m3d-texto m3d-texto--grande m3d-reveal">Grafito, arena o verde bosque. 39 EUR, y envío gratis desde 60 EUR.</p>
+      <div class="m3d-botones m3d-reveal" style="justify-content:center">
+        <a class="m3d-boton m3d-pulso" href="mailto:hola@origen-studio.example?subject=Quiero%20mi%20botella%20ORIGEN%20750">Pedir la mía</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="m3d-pie">
+    <nav>
+      <a href="#historia">El taller</a>
+      <a href="#productos">Acabados</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div>Origen Studio · <a href="mailto:hola@origen-studio.example">hola@origen-studio.example</a></div>
+  </footer>
+
+  <script type="module" src="motor-3d/motor3d.js"></script>
+</body>
+</html>
